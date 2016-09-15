@@ -1,0 +1,140 @@
+Disassembly Listing for Under_the_Hood
+Generated From:
+J:/myusb/ES_proj/Mplabx/Assembly_Issues/Under_the_Hood.X/dist/default/debug/Under_the_Hood.X.debug.elf
+Sep 15, 2016 10:11:00 AM
+
+---  J:/myusb/ES_proj/Mplabx/Assembly_Issues/Under_the_Hood.X/access_ram.c  -----------------------------
+1:             /***************************************************
+2:             	Tommy Gartlan Sep 2012
+3:             
+4:             Looking at C to assembly translation and then to machine code
+5:             
+6:             *****************************************************/
+7:             
+8:             
+9:             /*************************************************************
+10:                Device Header File (Indirectly pulls in the pic18f4520.h
+11:            *************************************************************/
+12:            #include <xc.h>
+13:            
+14:            
+15:            /*************************************************************
+16:             Compiler Directive to tell he compiler what clock freq is being used
+17:            *************************************************************/
+18:            #define _XTAL_FREQ 19660800
+19:            //#define _XTAL_FREQ 1
+20:            
+21:            /*************************************************************
+22:             Function Prototypes
+23:            *************************************************************/
+24:            
+25:            void Initial(void);
+26:            void delay_1s(void);
+27:            
+28:            
+29:            /****************************************
+30:            *  Function Prototypes
+31:            ******************************************/
+32:            void Initial(void);
+33:            
+34:            /*****************************************
+35:            				Macros
+36:            ******************************************/
+37:            
+38:            /*****************************************
+39:             			Main Program
+40:            ******************************************/
+41:            void main(void)
+42:            {
+43:            	unsigned long count = 0;     //Ends up at address 0x01 of access RAM
+7FC2  0E00     MOVLW 0x0
+7FC4  6E01     MOVWF __pcstackCOMRAM, ACCESS
+7FC6  0E00     MOVLW 0x0
+7FC8  6E02     MOVWF 0x2, ACCESS
+7FCA  0E00     MOVLW 0x0
+7FCC  6E03     MOVWF 0x3, ACCESS
+7FCE  0E00     MOVLW 0x0
+7FD0  6E04     MOVWF 0x4, ACCESS
+44:            	unsigned char countb = 0; 
+7FD2  0E00     MOVLW 0x0
+7FD4  6E05     MOVWF countb, ACCESS
+45:            	
+46:            	Initial();
+7FD6  ECD9     CALL 0x7FB2, 0
+7FD8  F03F     NOP
+47:            	
+48:            	//foreground program
+49:            	
+50:            	TRISB = 0x00;       //clrf 0x93     ...access RAM
+7FDA  0E00     MOVLW 0x0
+7FDC  6E93     MOVWF TRISB, ACCESS
+51:            	PORTB = 0x01;		//movlw 0x01
+7FDE  0E01     MOVLW 0x1
+7FE0  6E81     MOVWF PORTB, ACCESS
+52:            						//movwf 0x81
+53:            	
+54:            	
+55:            	count = 0x11ff55ff;			//movlw 0x02	...access RAM
+7FE2  0EFF     MOVLW 0xFF
+7FE4  6E01     MOVWF __pcstackCOMRAM, ACCESS
+7FE6  0E55     MOVLW 0x55
+7FE8  6E02     MOVWF 0x2, ACCESS
+7FEA  0EFF     MOVLW 0xFF
+7FEC  6E03     MOVWF 0x3, ACCESS
+7FEE  0E11     MOVLW 0x11
+7FF0  6E04     MOVWF 0x4, ACCESS
+56:            						//movwf 0x01
+57:            							
+58:            	PORTB = count;    //what happens here????
+7FF2  C001     MOVFF __pcstackCOMRAM, PORTB
+7FF4  FF81     NOP
+59:                
+60:                countb = 0x55;
+7FF6  0E55     MOVLW 0x55
+7FF8  6E05     MOVWF countb, ACCESS
+61:                
+62:                PORTB = countb;    
+7FFA  C005     MOVFF countb, PORTB
+7FFC  FF81     NOP
+63:            
+64:            	while(1);
+65:            	
+66:            	
+67:            }
+68:            
+69:            
+70:            
+71:            /************************************************
+72:             				Initial
+73:                This function initialises SFRs and 
+74:            	global variables
+75:            *************************************************/
+76:            
+77:            void Initial(void)
+78:            {
+79:            
+80:            	ADCON1 = 0x0f; //pic18f4520
+7FB2  0E0F     MOVLW 0xF
+7FB4  6EC1     MOVWF ADCON1, ACCESS
+81:            	
+82:            	TRISA = 0xff;
+7FB6  6892     SETF TRISA, ACCESS
+83:            	TRISB = 0x00;
+7FB8  0E00     MOVLW 0x0
+7FBA  6E93     MOVWF TRISB, ACCESS
+84:            	PORTB = 0x00;
+7FBC  0E00     MOVLW 0x0
+7FBE  6E81     MOVWF PORTB, ACCESS
+85:            }
+7FC0  0012     RETURN 0
+86:            
+87:            void delay_1s(void)
+88:            {
+89:                unsigned char i;
+90:                for (i=0;i<25;i++)
+91:                        __delay_ms(40);  //max value is 40 since this depends on the _delay() function which has a max number of cycles
+92:                
+93:            }
+94:            
+95:            
+96:            
