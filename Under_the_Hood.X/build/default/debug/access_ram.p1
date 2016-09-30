@@ -1,4 +1,19 @@
 Version 3.2 HI-TECH Software Intermediate Code
+[p mainexit ]
+"25 access_ram.c
+[v _Initial `(v ~T0 @X0 0 ef ]
+"1951 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4520.h
+[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
+"269
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"4962
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
+"1730
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+[v F3317 `(v ~T0 @X0 1 tf1`ul ]
+"152 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18.h
+[v __delay `JF3317 ~T0 @X0 0 e ]
+[p i __delay ]
 [; ;htc.h: 26: extern const char __xc8_OPTIM_SPEED;
 [; ;htc.h: 28: extern double __fpnormalize(double);
 [; ;xc8debug.h: 14: extern void __builtin_software_breakpoint(void);
@@ -3090,69 +3105,107 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 152: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 154: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 156: extern __nonreentrant void _delay3(unsigned char);
-"11 configuration_bits.c
-[p x OSC=HS ]
-"12
-[p x FCMEN=OFF ]
-"13
-[p x IESO=OFF ]
-"16
-[p x PWRT=OFF ]
-"17
-[p x BOREN=OFF ]
-"18
-[p x BORV=3 ]
-"21
-[p x WDT=OFF ]
-"22
-[p x WDTPS=32768 ]
-"25
-[p x CCP2MX=PORTC ]
-"26
-[p x PBADEN=OFF ]
-"27
-[p x LPT1OSC=OFF ]
-"28
-[p x MCLRE=ON ]
-"31
-[p x STVREN=ON ]
-"32
-[p x LVP=OFF ]
-"33
-[p x XINST=OFF ]
-"36
-[p x CP0=OFF ]
+[; ;access_ram.c: 25: void Initial(void);
+[; ;access_ram.c: 26: void delay_1s(void);
+"36 access_ram.c
+[v _main `(v ~T0 @X0 1 ef ]
 "37
-[p x CP1=OFF ]
+{
+[; ;access_ram.c: 36: void main(void)
+[; ;access_ram.c: 37: {
+[e :U _main ]
+[f ]
 "38
-[p x CP2=OFF ]
+[v _count `ul ~T0 @X0 1 a ]
+[; ;access_ram.c: 38: unsigned long count = 0;
+[e = _count -> -> -> 0 `i `l `ul ]
 "39
-[p x CP3=OFF ]
-"42
-[p x CPB=OFF ]
-"43
-[p x CPD=OFF ]
+[v _countb `uc ~T0 @X0 1 a ]
+[; ;access_ram.c: 39: unsigned char countb = 0;
+[e = _countb -> -> 0 `i `uc ]
+[; ;access_ram.c: 41: Initial();
+"41
+[e ( _Initial ..  ]
+[; ;access_ram.c: 45: TRISB = 0x00;
+"45
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;access_ram.c: 46: PORTB = 0x01;
 "46
-[p x WRT0=OFF ]
-"47
-[p x WRT1=OFF ]
-"48
-[p x WRT2=OFF ]
-"49
-[p x WRT3=OFF ]
-"52
-[p x WRTC=OFF ]
+[e = _PORTB -> -> 1 `i `uc ]
+[; ;access_ram.c: 50: count = 0x11ff55ff;
+"50
+[e = _count -> -> 301946367 `l `ul ]
+[; ;access_ram.c: 53: PORTB = count;
 "53
-[p x WRTB=OFF ]
-"54
-[p x WRTD=OFF ]
+[e = _PORTB -> _count `uc ]
+[; ;access_ram.c: 55: countb = 0x55;
+"55
+[e = _countb -> -> 85 `i `uc ]
+[; ;access_ram.c: 57: PORTB = countb;
 "57
-[p x EBTR0=OFF ]
-"58
-[p x EBTR1=OFF ]
+[e = _PORTB _countb ]
+[; ;access_ram.c: 59: while(1);
 "59
-[p x EBTR2=OFF ]
-"60
-[p x EBTR3=OFF ]
-"63
-[p x EBTRB=OFF ]
+[e :U 368 ]
+[e :U 367 ]
+[e $U 368  ]
+[e :U 369 ]
+[; ;access_ram.c: 62: }
+"62
+[e :UE 366 ]
+}
+"72
+[v _Initial `(v ~T0 @X0 1 ef ]
+"73
+{
+[; ;access_ram.c: 72: void Initial(void)
+[; ;access_ram.c: 73: {
+[e :U _Initial ]
+[f ]
+[; ;access_ram.c: 75: ADCON1 = 0x0f;
+"75
+[e = _ADCON1 -> -> 15 `i `uc ]
+[; ;access_ram.c: 77: TRISA = 0xff;
+"77
+[e = _TRISA -> -> 255 `i `uc ]
+[; ;access_ram.c: 78: TRISB = 0x00;
+"78
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;access_ram.c: 79: PORTB = 0x00;
+"79
+[e = _PORTB -> -> 0 `i `uc ]
+[; ;access_ram.c: 80: }
+"80
+[e :UE 370 ]
+}
+"82
+[v _delay_1s `(v ~T0 @X0 1 ef ]
+"83
+{
+[; ;access_ram.c: 82: void delay_1s(void)
+[; ;access_ram.c: 83: {
+[e :U _delay_1s ]
+[f ]
+"84
+[v _i `uc ~T0 @X0 1 a ]
+[; ;access_ram.c: 84: unsigned char i;
+[; ;access_ram.c: 85: for (i=0;i<25;i++)
+"85
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 25 `i 372  ]
+[e $U 373  ]
+"86
+[e :U 372 ]
+[; ;access_ram.c: 86: _delay((unsigned long)((40)*(19660800/4000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 19660800 `l `d .4000.0 `ul ]
+"85
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 25 `i 372  ]
+[e :U 373 ]
+"86
+}
+[; ;access_ram.c: 88: }
+"88
+[e :UE 371 ]
+}

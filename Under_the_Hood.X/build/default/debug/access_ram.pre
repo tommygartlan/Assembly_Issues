@@ -1,5 +1,5 @@
 
-# 1 "configuration_bits.c"
+# 1 "access_ram.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4085,59 +4085,55 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
+# 25 "access_ram.c"
+void Initial(void);
+void delay_1s(void);
 
-# 11 "configuration_bits.c"
-#pragma config OSC = HS
-#pragma config FCMEN = OFF
-#pragma config IESO = OFF
+# 36
+void main(void)
+{
+unsigned long count = 0;
+unsigned char countb = 0;
 
-
-#pragma config PWRT = OFF
-#pragma config BOREN = OFF
-#pragma config BORV = 3
-
-
-#pragma config WDT = OFF
-#pragma config WDTPS = 32768
+Initial();
 
 
-#pragma config CCP2MX = PORTC
-#pragma config PBADEN = OFF
-#pragma config LPT1OSC = OFF
-#pragma config MCLRE = ON
+
+TRISB = 0x00;
+PORTB = 0x01;
 
 
-#pragma config STVREN = ON
-#pragma config LVP = OFF
-#pragma config XINST = OFF
+
+count = 0x11ff55ff;
 
 
-#pragma config CP0 = OFF
-#pragma config CP1 = OFF
-#pragma config CP2 = OFF
-#pragma config CP3 = OFF
+PORTB = count;
+
+countb = 0x55;
+
+PORTB = countb;
+
+while(1);
 
 
-#pragma config CPB = OFF
-#pragma config CPD = OFF
+}
 
+# 72
+void Initial(void)
+{
 
-#pragma config WRT0 = OFF
-#pragma config WRT1 = OFF
-#pragma config WRT2 = OFF
-#pragma config WRT3 = OFF
+ADCON1 = 0x0f;
 
+TRISA = 0xff;
+TRISB = 0x00;
+PORTB = 0x00;
+}
 
-#pragma config WRTC = OFF
-#pragma config WRTB = OFF
-#pragma config WRTD = OFF
+void delay_1s(void)
+{
+unsigned char i;
+for (i=0;i<25;i++)
+_delay((unsigned long)((40)*(19660800/4000.0)));
 
-
-#pragma config EBTR0 = OFF
-#pragma config EBTR1 = OFF
-#pragma config EBTR2 = OFF
-#pragma config EBTR3 = OFF
-
-
-#pragma config EBTRB = OFF
+}
 

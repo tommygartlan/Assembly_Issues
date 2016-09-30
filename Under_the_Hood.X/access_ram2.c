@@ -28,7 +28,7 @@ volatile unsigned char countc @ 0x101;
 /*****************************************
 				Macros
 ******************************************/
-
+#define ImDebugging
 /*****************************************
  			Main Program
 ******************************************/
@@ -64,18 +64,20 @@ void main(void)
 						
 						
 	PORTB = count;
+#ifndef ImDebugging
 	delay_1s();
-	
+#endif
 	countb = 4;
 	PORTB = countb;
+#ifndef ImDebugging
 	delay_1s();
-	
+#endif
 	
 	countc = 5;   //what happens here in assembly as oppose to assembly for countb = 4
 	PORTB = countc;                  
-									 
+#ifndef	ImDebugging								 
 	delay_1s();
-	
+#endif	
 	while(1);
 	
 	

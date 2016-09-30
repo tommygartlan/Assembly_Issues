@@ -3,12 +3,10 @@
 [d edition pro ]
 [d chip 18F4520 ]
 [d frameptr 4065 ]
-"35 J:\myusb\ES_proj\Mplabx\Assembly_Issues\Under_the_Hood.X\access_ram2.c
+"36 J:\myusb\ES_proj\Mplabx\Assembly_Issues\Under_the_Hood.X\access_ram.c
 [v _main main `(v  1 e 0 0 ]
-"91
+"72
 [v _Initial Initial `(v  1 e 0 0 ]
-"101
-[v _delay_1s delay_1s `(v  1 e 0 0 ]
 "62 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\float.c
 [v ___ftpack __ftpack `(f  1 e 3 0 ]
 "86 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\ftadd.c
@@ -29,8 +27,6 @@
 [v ___flmul __flmul `(d  1 e 3 0 ]
 "15 C:\Program Files (x86)\Microchip\xc8\v1.35\sources\common\Umul32.c
 [v ___lmul __lmul `(ul  1 e 4 0 ]
-"27 J:\myusb\ES_proj\Mplabx\Assembly_Issues\Under_the_Hood.X\access_ram2.c
-[v _countc countc `VEuc  1 e 1 @257 ]
 "269 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4520.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
 "1730
@@ -39,28 +35,17 @@
 [v _TRISB TRISB `VEuc  1 e 1 @3987 ]
 "4962
 [v _ADCON1 ADCON1 `VEuc  1 e 1 @4033 ]
-"35 J:\myusb\ES_proj\Mplabx\Assembly_Issues\Under_the_Hood.X\access_ram2.c
+"36 J:\myusb\ES_proj\Mplabx\Assembly_Issues\Under_the_Hood.X\access_ram.c
 [v _main main `(v  1 e 0 0 ]
 {
-"41
-[v main@long_count long_count `ul  1 a 4 2 ]
-"43
-[v main@countb countb `ui  1 a 2 7 ]
-"40
-[v main@count count `uc  1 a 1 9 ]
-"45
-[v main@countd countd `uc  1 a 1 6 ]
-"82
+"38
+[v main@count count `ul  1 a 4 0 ]
+"39
+[v main@countb countb `uc  1 a 1 4 ]
+"62
 } 0
-"101
-[v _delay_1s delay_1s `(v  1 e 0 0 ]
-{
-"103
-[v delay_1s@i i `uc  1 a 1 1 ]
-"107
-} 0
-"91
+"72
 [v _Initial Initial `(v  1 e 0 0 ]
 {
-"99
+"80
 } 0
