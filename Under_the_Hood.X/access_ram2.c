@@ -24,60 +24,68 @@ Looking at C to assembly translation and then to machine code
 void Initial(void);
 void delay_1s(void);
 
-volatile unsigned char countc @ 0x101; 
+//volatile unsigned char countc @ 0x301;
+unsigned char countc @ 0x301;
 /*****************************************
 				Macros
 ******************************************/
-#define ImDebugging
+
+#define ImDebugging     //Comment if not debugging so delays are included
+
 /*****************************************
  			Main Program
 ******************************************/
 void main(void)
 {
     
-    
+     
     
 	unsigned char count = 0;     //what address do the variables end up at?
 	unsigned long long_count=0;
 	
     unsigned int countb=0;
     
-    unsigned char countd;
-    
-    
-        
-         
-    
-    countb = 0;
-    //countc = 0;
-    countd =0;
 	Initial();
-	
-	//foreground program
-	
-	TRISB = 0x00;       
-	PORTB = 0x01;		
 						
-	
-	
-	count = 2;			
-						
-						
-	PORTB = count;
+	count = 2;								
+	LATB = count;
 #ifndef ImDebugging
 	delay_1s();
 #endif
+    
+    
 	countb = 4;
-	PORTB = countb;
+	LATB = countb;
 #ifndef ImDebugging
 	delay_1s();
 #endif
-	
+
 	countc = 5;   //what happens here in assembly as oppose to assembly for countb = 4
-	PORTB = countc;                  
+	LATB = countc;                  
 #ifndef	ImDebugging								 
 	delay_1s();
 #endif	
+    
+    
+    count = 260;								
+	LATB = count;
+    LATB = count >> 8;
+#ifndef ImDebugging
+	delay_1s();
+#endif
+    
+    countb = 260;								
+	LATB = countb;
+    LATB = countb >> 8;
+#ifndef ImDebugging
+	delay_1s();
+#endif
+    
+    long_count = 0x01020304;
+    LATB = long_count;
+    LATB = long_count >> 8;
+    LATB = long_count >> 16;
+    LATB = long_count >> 24;
 	while(1);
 	
 	
@@ -97,7 +105,7 @@ void Initial(void)
 	
 	TRISA = 0xff;
 	TRISB = 0x00;
-	PORTB = 0x00;
+	LATB = 0x00;
 }
 
 void delay_1s(void)

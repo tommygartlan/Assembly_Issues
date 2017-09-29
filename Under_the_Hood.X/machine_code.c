@@ -42,21 +42,23 @@ void delay_1s(void);
 void main(void)
 {
 	unsigned char count = 0;
-	Initial();
+	Initial();                    //Function
 	
 	//foreground program
 	
 	TRISB = 0x00;       //clrf 0x93
-	PORTB = 0x01;		//movlw 0x01
+	LATB = 0x01;		//movlw 0x01
 						//movwf 0x81
 	
 	
 	while(1)
 	{
-		PORTB = 0x55;
-		delay_1s();
-		PORTB = 0xAA;
-		delay_1s();
+		//delay_1s();
+        LATB = 0x55;
+		
+        count++;
+		//delay_1s();
+        LATB = 0xAA;
 	}
 		
 	
@@ -76,7 +78,7 @@ void Initial(void)
 
 	TRISA = 0xff;
 	TRISB = 0x00;
-	PORTB = 0x00;
+	LATB = 0x00;
 }
 
 

@@ -35,7 +35,7 @@ void delay_1s(void);
 ******************************************/
 void main(void)
 {
-	unsigned long count = 0;     //What addresses in RAM do these variables end up at?
+	unsigned long count = 0;     //What addresses in RAM do these variables end up at and how many bytes are used?
 	unsigned char countb = 0; 
 	
 	Initial();
@@ -43,18 +43,18 @@ void main(void)
 	//foreground program
 	
 	TRISB = 0x00;       //Look at the disassembly
-	PORTB = 0x01;		
+	LATB = 0x01;		
 						
 	
 	
 	count = 0x11ff55ff;			//is this ok?
 						
 							
-	PORTB = count;    //what happens here????
+	LATB = count;    //what happens here????
     
     countb = 0x55;
     
-    PORTB = countb;    
+    LATB = countb;    
 
 	while(1);
 	
@@ -76,7 +76,7 @@ void Initial(void)
 	
 	TRISA = 0xff;
 	TRISB = 0x00;
-	PORTB = 0x00;
+	LATB = 0x00;
 }
 
 void delay_1s(void)
