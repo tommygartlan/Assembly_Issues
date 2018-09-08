@@ -1,5 +1,5 @@
 
-# 1 "access_ram.c"
+# 1 "machine_code.c"
 
 # 26 "C:\Program Files (x86)\Microchip\xc8\v1.35\include\htc.h"
 extern const char __xc8_OPTIM_SPEED;
@@ -4085,49 +4085,47 @@ extern __nonreentrant void _delaywdt(unsigned long);
 #pragma intrinsic(_delay3)
 extern __nonreentrant void _delay3(unsigned char);
 
-# 25 "access_ram.c"
+# 25 "machine_code.c"
 void Initial(void);
 void delay_1s(void);
 
-# 36
+# 42
 void main(void)
 {
-unsigned long count = 0;
-unsigned char countb = 0;
-
+unsigned char count = 0;
 Initial();
 
 
 
 TRISB = 0x00;
-PORTB = 0x01;
+LATB = 0x01;
 
 
 
-count = 0x11ff55ff;
+while(1)
+{
 
+LATB = 0x55;
 
-PORTB = count;
+count++;
 
-countb = 0x55;
+LATB = 0xAA;
+}
 
-PORTB = countb;
-
-while(1);
 
 
 }
 
-# 72
+# 75
 void Initial(void)
 {
-
 ADCON1 = 0x0f;
 
 TRISA = 0xff;
 TRISB = 0x00;
-PORTB = 0x00;
+LATB = 0x00;
 }
+
 
 void delay_1s(void)
 {

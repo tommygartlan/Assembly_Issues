@@ -1,11 +1,11 @@
 Version 3.2 HI-TECH Software Intermediate Code
 [p mainexit ]
-"25 access_ram.c
+"25 machine_code.c
 [v _Initial `(v ~T0 @X0 0 ef ]
 "1951 C:\Program Files (x86)\Microchip\xc8\v1.35\include\pic18f4520.h
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"269
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"1232
+[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
 "4962
 [v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
 "1730
@@ -3105,107 +3105,107 @@ Version 3.2 HI-TECH Software Intermediate Code
 [; ;pic18.h: 152: extern __nonreentrant void _delay(unsigned long);
 [; ;pic18.h: 154: extern __nonreentrant void _delaywdt(unsigned long);
 [; ;pic18.h: 156: extern __nonreentrant void _delay3(unsigned char);
-[; ;access_ram.c: 25: void Initial(void);
-[; ;access_ram.c: 26: void delay_1s(void);
-"36 access_ram.c
+[; ;machine_code.c: 25: void Initial(void);
+[; ;machine_code.c: 26: void delay_1s(void);
+"42 machine_code.c
 [v _main `(v ~T0 @X0 1 ef ]
-"37
+"43
 {
-[; ;access_ram.c: 36: void main(void)
-[; ;access_ram.c: 37: {
+[; ;machine_code.c: 42: void main(void)
+[; ;machine_code.c: 43: {
 [e :U _main ]
 [f ]
-"38
-[v _count `ul ~T0 @X0 1 a ]
-[; ;access_ram.c: 38: unsigned long count = 0;
-[e = _count -> -> -> 0 `i `l `ul ]
-"39
-[v _countb `uc ~T0 @X0 1 a ]
-[; ;access_ram.c: 39: unsigned char countb = 0;
-[e = _countb -> -> 0 `i `uc ]
-[; ;access_ram.c: 41: Initial();
-"41
-[e ( _Initial ..  ]
-[; ;access_ram.c: 45: TRISB = 0x00;
+"44
+[v _count `uc ~T0 @X0 1 a ]
+[; ;machine_code.c: 44: unsigned char count = 0;
+[e = _count -> -> 0 `i `uc ]
+[; ;machine_code.c: 45: Initial();
 "45
+[e ( _Initial ..  ]
+[; ;machine_code.c: 49: TRISB = 0x00;
+"49
 [e = _TRISB -> -> 0 `i `uc ]
-[; ;access_ram.c: 46: PORTB = 0x01;
-"46
-[e = _PORTB -> -> 1 `i `uc ]
-[; ;access_ram.c: 50: count = 0x11ff55ff;
+[; ;machine_code.c: 50: LATB = 0x01;
 "50
-[e = _count -> -> 301946367 `l `ul ]
-[; ;access_ram.c: 53: PORTB = count;
-"53
-[e = _PORTB -> _count `uc ]
-[; ;access_ram.c: 55: countb = 0x55;
-"55
-[e = _countb -> -> 85 `i `uc ]
-[; ;access_ram.c: 57: PORTB = countb;
-"57
-[e = _PORTB _countb ]
-[; ;access_ram.c: 59: while(1);
-"59
+[e = _LATB -> -> 1 `i `uc ]
+[; ;machine_code.c: 54: while(1)
+"54
 [e :U 368 ]
+[; ;machine_code.c: 55: {
+"55
+{
+[; ;machine_code.c: 57: LATB = 0x55;
+"57
+[e = _LATB -> -> 85 `i `uc ]
+[; ;machine_code.c: 59: count++;
+"59
+[e ++ _count -> -> 1 `i `uc ]
+[; ;machine_code.c: 61: LATB = 0xAA;
+"61
+[e = _LATB -> -> 170 `i `uc ]
+"62
+}
 [e :U 367 ]
+"54
 [e $U 368  ]
 [e :U 369 ]
-[; ;access_ram.c: 62: }
-"62
+[; ;machine_code.c: 62: }
+[; ;machine_code.c: 66: }
+"66
 [e :UE 366 ]
 }
-"72
+"75
 [v _Initial `(v ~T0 @X0 1 ef ]
-"73
+"76
 {
-[; ;access_ram.c: 72: void Initial(void)
-[; ;access_ram.c: 73: {
+[; ;machine_code.c: 75: void Initial(void)
+[; ;machine_code.c: 76: {
 [e :U _Initial ]
 [f ]
-[; ;access_ram.c: 75: ADCON1 = 0x0f;
-"75
-[e = _ADCON1 -> -> 15 `i `uc ]
-[; ;access_ram.c: 77: TRISA = 0xff;
+[; ;machine_code.c: 77: ADCON1 = 0x0f;
 "77
-[e = _TRISA -> -> 255 `i `uc ]
-[; ;access_ram.c: 78: TRISB = 0x00;
-"78
-[e = _TRISB -> -> 0 `i `uc ]
-[; ;access_ram.c: 79: PORTB = 0x00;
+[e = _ADCON1 -> -> 15 `i `uc ]
+[; ;machine_code.c: 79: TRISA = 0xff;
 "79
-[e = _PORTB -> -> 0 `i `uc ]
-[; ;access_ram.c: 80: }
+[e = _TRISA -> -> 255 `i `uc ]
+[; ;machine_code.c: 80: TRISB = 0x00;
 "80
+[e = _TRISB -> -> 0 `i `uc ]
+[; ;machine_code.c: 81: LATB = 0x00;
+"81
+[e = _LATB -> -> 0 `i `uc ]
+[; ;machine_code.c: 82: }
+"82
 [e :UE 370 ]
 }
-"82
+"85
 [v _delay_1s `(v ~T0 @X0 1 ef ]
-"83
+"86
 {
-[; ;access_ram.c: 82: void delay_1s(void)
-[; ;access_ram.c: 83: {
+[; ;machine_code.c: 85: void delay_1s(void)
+[; ;machine_code.c: 86: {
 [e :U _delay_1s ]
 [f ]
-"84
+"87
 [v _i `uc ~T0 @X0 1 a ]
-[; ;access_ram.c: 84: unsigned char i;
-[; ;access_ram.c: 85: for (i=0;i<25;i++)
-"85
+[; ;machine_code.c: 87: unsigned char i;
+[; ;machine_code.c: 88: for (i=0;i<25;i++)
+"88
 {
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 25 `i 372  ]
 [e $U 373  ]
-"86
+"89
 [e :U 372 ]
-[; ;access_ram.c: 86: _delay((unsigned long)((40)*(19660800/4000.0)));
+[; ;machine_code.c: 89: _delay((unsigned long)((40)*(19660800/4000.0)));
 [e ( __delay (1 -> * -> -> 40 `i `d / -> -> 19660800 `l `d .4000.0 `ul ]
-"85
+"88
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 25 `i 372  ]
 [e :U 373 ]
-"86
+"89
 }
-[; ;access_ram.c: 88: }
-"88
+[; ;machine_code.c: 91: }
+"91
 [e :UE 371 ]
 }
