@@ -23,7 +23,7 @@ Looking at C to assembly translation and then to machine code
 
 void Initial(void);
 void delay_1s(void);
-
+void test(void);
 //volatile unsigned char countc @ 0x301;
 unsigned char countc @ 0x301;
 /*****************************************
@@ -46,6 +46,7 @@ void main(void)
     unsigned int countb=0;
     
 	Initial();
+    test();
 						
 	count = 2;								
 	LATB = count;
@@ -100,12 +101,16 @@ void main(void)
 
 void Initial(void)
 {
-
+    unsigned char i = 0;   //local dyanmic variable
 	ADCON1 = 0x0f; //pic18f4520
 	
 	TRISA = 0xff;
 	TRISB = 0x00;
 	LATB = 0x00;
+    for (i=0;i<3;i++)
+    {
+        LATB = i;
+    }
 }
 
 void delay_1s(void)
@@ -116,3 +121,9 @@ void delay_1s(void)
     
 }
 
+void test(void)
+{
+    unsigned char j;
+    for (j=4;j<8;j++)
+        LATB = j;
+}
