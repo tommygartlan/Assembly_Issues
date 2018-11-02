@@ -1,9 +1,9 @@
 Disassembly Listing for Under_the_Hood
 Generated From:
 F:/myusb/ES_proj/Mplabx/Assembly_Issues/Under_the_Hood.X/dist/default/production/Under_the_Hood.X.production.elf
-Sep 8, 2018 12:38:50 PM
+Oct 12, 2018 2:07:10 PM
 
----  F:/myusb/ES_proj/Mplabx/Assembly_Issues/Under_the_Hood.X/machine_code.c  ---------------------------
+---  F:/myusb/ES_proj/Mplabx/Assembly_Issues/Under_the_Hood.X/access_ram2.c  ----------------------------
 1:             /***************************************************
 2:             	Tommy Gartlan Sep 2012
 3:             
@@ -11,110 +11,212 @@ Sep 8, 2018 12:38:50 PM
 5:             
 6:             *****************************************************/
 7:             
-8:             
-9:             /*************************************************************
-10:                Device Header File (Indirectly pulls in the pic18f4520.h
-11:            *************************************************************/
-12:            #include <xc.h>
+8:             /*************************************************************
+9:                 Device Header File (Indirectly pulls in the pic18f4520.h
+10:            *************************************************************/
+11:            #include <xc.h>
+12:            
 13:            
-14:            
-15:            /*************************************************************
-16:             Compiler Directive to tell he compiler what clock freq is being used
-17:            *************************************************************/
-18:            #define _XTAL_FREQ 19660800
-19:            //#define _XTAL_FREQ 1
-20:            
-21:            /*************************************************************
-22:             Function Prototypes
-23:            *************************************************************/
-24:            
-25:            void Initial(void);
-26:            void delay_1s(void);
-27:            
-28:            
+14:            /*************************************************************
+15:             Compiler Directive to tell he compiler what clock freq is being used
+16:            *************************************************************/
+17:            #define _XTAL_FREQ 19660800
+18:            //#define _XTAL_FREQ 1
+19:            
+20:            /*************************************************************
+21:             Function Prototypes
+22:            *************************************************************/
+23:            
+24:            void Initial(void);
+25:            void delay_1s(void);
+26:            void test(void);
+27:            //volatile unsigned char countc @ 0x301;
+28:            //unsigned char countc @ 0x301;
 29:            /*****************************************
-30:              Global Variables
+30:            				Macros
 31:            ******************************************/
 32:            
-33:            
+33:            #define ImDebugging     //Comment if not debugging so delays are included
 34:            
 35:            /*****************************************
-36:            				Macros
+36:             			Main Program
 37:            ******************************************/
-38:            
-39:            /*****************************************
-40:             			Main Program
-41:            ******************************************/
-42:            void main(void)
-43:            {
-44:            	unsigned char count = 0;
-7FE4  0E00     MOVLW 0x0
-7FE6  6E01     MOVWF __pcstackCOMRAM, ACCESS
-45:            	Initial();                    //Function
-7FE8  ECEA     CALL 0x7FD4, 0
-7FEA  F03F     NOP
-46:            	
-47:            	//foreground program
-48:            	
-49:            	TRISB = 0x00;       //clrf 0x93
-7FEC  0E00     MOVLW 0x0
-7FEE  6E93     MOVWF TRISB, ACCESS
-50:            	LATB = 0x01;		//movlw 0x01
-7FF0  0E01     MOVLW 0x1
-7FF2  D004     BRA 0x7FFC
-51:            						//movwf 0x81
-52:            	
-53:            	
-54:            	while(1)
-55:            	{
-56:            		//delay_1s();
-57:                    LATB = 0x55;
-7FF4  0E55     MOVLW 0x55
-7FF6  6E8A     MOVWF LATB, ACCESS
-58:            		
-59:                    count++;
-7FF8  2A01     INCF __pcstackCOMRAM, F, ACCESS
-60:            		//delay_1s();
-61:                    LATB = 0xAA;
-7FFA  0EAA     MOVLW 0xAA
-7FFC  6E8A     MOVWF LATB, ACCESS
-62:            	}
-63:            		
-64:            	
-65:            	
-66:            }
-67:            
-68:            
-69:            /************************************************
-70:             				Initial
-71:                This function initialises SFRs and 
-72:            	global variables
-73:            *************************************************/
-74:            
-75:            void Initial(void)
-76:            {
-77:            	ADCON1 = 0x0f; //pic18f4520
-7FD4  0E0F     MOVLW 0xF
-7FD6  6EC1     MOVWF ADCON1, ACCESS
-78:            
-79:            	TRISA = 0xff;
-7FD8  6892     SETF TRISA, ACCESS
-80:            	TRISB = 0x00;
-7FDA  0E00     MOVLW 0x0
-7FDC  6E93     MOVWF TRISB, ACCESS
-81:            	LATB = 0x00;
-7FDE  0E00     MOVLW 0x0
-7FE0  6E8A     MOVWF LATB, ACCESS
-82:            }
-7FE2  0012     RETURN 0
-83:            
-84:            
-85:            void delay_1s(void)
-86:            {
-87:                unsigned char i;
-88:                for (i=0;i<25;i++)
-89:                        __delay_ms(40);  //max value is 40 since this depends on the _delay() function which has a max number of cycles
-90:                
-91:            }
-92:            
-93:            
+38:            void main(void)
+39:            {
+40:                
+41:                 
+42:                
+43:            	unsigned char count = 0;     //what address do the variables end up at?
+7F8A  0E00     MOVLW 0x0
+7F8C  6E02     MOVWF count, ACCESS
+44:            	unsigned long long_count=0;
+7F8E  0E00     MOVLW 0x0
+7F90  6E05     MOVWF long_count, ACCESS
+7F92  0E00     MOVLW 0x0
+7F94  6E06     MOVWF 0x6, ACCESS
+7F96  0E00     MOVLW 0x0
+7F98  6E07     MOVWF 0x7, ACCESS
+7F9A  0E00     MOVLW 0x0
+7F9C  6E08     MOVWF 0x8, ACCESS
+45:            	
+46:                unsigned int countb=0;
+7F9E  0E00     MOVLW 0x0
+7FA0  6E04     MOVWF 0x4, ACCESS
+7FA2  0E00     MOVLW 0x0
+7FA4  6E03     MOVWF countb, ACCESS
+47:                
+48:            	Initial();
+7FA6  ECB2     CALL 0x7F64, 0
+7FA8  F03F     NOP
+49:                test();
+7FAA  ECA8     CALL 0x7F50, 0
+7FAC  F03F     NOP
+50:            						
+51:            	count = 2;								
+7FAE  0E02     MOVLW 0x2
+7FB0  6E02     MOVWF count, ACCESS
+52:            	LATB = count;
+7FB2  C002     MOVFF count, LATB
+7FB4  FF8A     NOP
+53:            #ifndef ImDebugging
+54:            	delay_1s();
+55:            #endif
+56:                
+57:                
+58:            	countb = 4;
+7FB6  0E00     MOVLW 0x0
+7FB8  6E04     MOVWF 0x4, ACCESS
+7FBA  0E04     MOVLW 0x4
+7FBC  6E03     MOVWF countb, ACCESS
+59:            	LATB = countb;
+7FBE  C003     MOVFF countb, LATB
+7FC0  FF8A     NOP
+60:            #ifndef ImDebugging
+61:            	delay_1s();
+62:            #endif
+63:            
+64:            	//countc = 5;   //what happens here in assembly as oppose to assembly for countb = 4
+65:            	//LATB = countc;                  
+66:            #ifndef	ImDebugging								 
+67:            	delay_1s();
+68:            #endif	
+69:                
+70:                
+71:                count = 260;								
+7FC2  0E04     MOVLW 0x4
+7FC4  6E02     MOVWF count, ACCESS
+72:            	LATB = count;
+7FC6  C002     MOVFF count, LATB
+7FC8  FF8A     NOP
+73:                LATB = count >> 8;
+7FCA  0E00     MOVLW 0x0
+7FCC  6E8A     MOVWF LATB, ACCESS
+74:            #ifndef ImDebugging
+75:            	delay_1s();
+76:            #endif
+77:                
+78:                countb = 260;								
+7FCE  0E01     MOVLW 0x1
+7FD0  6E04     MOVWF 0x4, ACCESS
+7FD2  0E04     MOVLW 0x4
+7FD4  6E03     MOVWF countb, ACCESS
+79:            	LATB = countb;
+7FD6  C003     MOVFF countb, LATB
+7FD8  FF8A     NOP
+80:                LATB = countb >> 8;
+7FDA  5004     MOVF 0x4, W, ACCESS
+7FDC  6E8A     MOVWF LATB, ACCESS
+81:            #ifndef ImDebugging
+82:            	delay_1s();
+83:            #endif
+84:                
+85:                long_count = 0x01020304;
+7FDE  0E04     MOVLW 0x4
+7FE0  6E05     MOVWF long_count, ACCESS
+7FE2  0E03     MOVLW 0x3
+7FE4  6E06     MOVWF 0x6, ACCESS
+7FE6  0E02     MOVLW 0x2
+7FE8  6E07     MOVWF 0x7, ACCESS
+7FEA  0E01     MOVLW 0x1
+7FEC  6E08     MOVWF 0x8, ACCESS
+86:                LATB = long_count;
+7FEE  C005     MOVFF long_count, LATB
+7FF0  FF8A     NOP
+87:                LATB = long_count >> 8;
+7FF2  C006     MOVFF 0x6, LATB
+7FF4  FF8A     NOP
+88:                LATB = long_count >> 16;
+7FF6  C007     MOVFF 0x7, LATB
+7FF8  FF8A     NOP
+89:                LATB = long_count >> 24;
+7FFA  C008     MOVFF 0x8, LATB
+7FFC  FF8A     NOP
+90:            	while(1);
+91:            	
+92:            	
+93:            }
+94:            
+95:            
+96:            /************************************************
+97:             				Initial
+98:                This function initialises SFRs and 
+99:            	global variables
+100:           *************************************************/
+101:           
+102:           void Initial(void)
+103:           {
+104:               unsigned char i = 0;   //local dyanmic variable
+7F64  0E00     MOVLW 0x0
+7F66  6E01     MOVWF __pcstackCOMRAM, ACCESS
+105:           	ADCON1 = 0x0f; //pic18f4520
+7F68  0E0F     MOVLW 0xF
+7F6A  6EC1     MOVWF ADCON1, ACCESS
+106:           	
+107:           	TRISA = 0xff;
+7F6C  6892     SETF TRISA, ACCESS
+108:           	TRISB = 0x00;
+7F6E  0E00     MOVLW 0x0
+7F70  6E93     MOVWF TRISB, ACCESS
+109:           	LATB = 0x00;
+7F72  0E00     MOVLW 0x0
+7F74  6E8A     MOVWF LATB, ACCESS
+110:               for (i=0;i<3;i++)
+7F76  0E00     MOVLW 0x0
+7F78  6E01     MOVWF __pcstackCOMRAM, ACCESS
+7F7A  0E02     MOVLW 0x2
+7F7C  6401     CPFSGT __pcstackCOMRAM, ACCESS
+7F7E  D001     BRA 0x7F82
+7F80  0012     RETURN 0
+111:               {
+112:                   LATB = i;
+7F82  C001     MOVFF __pcstackCOMRAM, LATB
+7F84  FF8A     NOP
+113:               }
+7F86  2A01     INCF __pcstackCOMRAM, F, ACCESS
+7F88  D7F8     BRA 0x7F7A
+114:           }
+115:           
+116:           void delay_1s(void)
+117:           {
+118:               unsigned char i;
+119:               for (i=0;i<25;i++)
+120:                       __delay_ms(40);  //max value is 40 since this depends on the _delay() function which has a max number of cycles
+121:               
+122:           }
+123:           
+124:           void test(void)
+125:           {
+126:               unsigned char j;
+127:               for (j=4;j<8;j++)
+7F50  0E04     MOVLW 0x4
+7F52  6E01     MOVWF __pcstackCOMRAM, ACCESS
+7F54  0E07     MOVLW 0x7
+7F56  6401     CPFSGT __pcstackCOMRAM, ACCESS
+7F58  D001     BRA 0x7F5C
+7F5A  0012     RETURN 0
+128:                   LATB = j;
+7F5C  C001     MOVFF __pcstackCOMRAM, LATB
+7F5E  FF8A     NOP
+7F60  2A01     INCF __pcstackCOMRAM, F, ACCESS
+7F62  D7F8     BRA 0x7F54
+129:           }

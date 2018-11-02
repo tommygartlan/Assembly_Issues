@@ -1,4 +1,21 @@
 Version 4.0 HI-TECH Software Intermediate Code
+[p mainexit ]
+"1089 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 1089: extern volatile unsigned char LATB __attribute__((address(0xF8A)));
+[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"4690
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 4690: extern volatile unsigned char ADCON1 __attribute__((address(0xFC1)));
+[v _ADCON1 `Vuc ~T0 @X0 0 e@4033 ]
+"1477
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 1477: extern volatile unsigned char TRISA __attribute__((address(0xF92)));
+[v _TRISA `Vuc ~T0 @X0 0 e@3986 ]
+"1699
+[; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 1699: extern volatile unsigned char TRISB __attribute__((address(0xF93)));
+[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
+[v F2516 `(v ~T0 @X0 1 tf1`ul ]
+"183 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18.h
+[v __delay `JF2516 ~T0 @X0 0 e ]
+[p i __delay ]
 "54 C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 54: __asm("PORTA equ 0F80h");
 [; <" PORTA equ 0F80h ;# ">
@@ -413,69 +430,188 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7001
 [; ;C:\Program Files (x86)\Microchip\xc8\v2.00\pic\include\pic18f4520.h: 7001: __asm("TOSU equ 0FFFh");
 [; <" TOSU equ 0FFFh ;# ">
-"11 configuration_bits.c
-[p x OSC = HS ]
-"12
-[p x FCMEN = OFF ]
-"13
-[p x IESO = OFF ]
-"16
-[p x PWRT = OFF ]
-"17
-[p x BOREN = OFF ]
-"18
-[p x BORV = 3 ]
-"21
-[p x WDT = OFF ]
-"22
-[p x WDTPS = 32768 ]
-"25
-[p x CCP2MX = PORTC ]
-"26
-[p x PBADEN = OFF ]
-"27
-[p x LPT1OSC = OFF ]
-"28
-[p x MCLRE = ON ]
-"31
-[p x STVREN = ON ]
-"32
-[p x LVP = OFF ]
-"33
-[p x XINST = OFF ]
-"36
-[p x CP0 = OFF ]
-"37
-[p x CP1 = OFF ]
+"28 access_ram2.c
+[; ;access_ram2.c: 28: unsigned int countc __attribute__((address(0x201)));
+[v _countc `ui ~T0 @X0 1 e@513 ]
+[v $root$_main `(v ~T0 @X0 0 e ]
 "38
-[p x CP2 = OFF ]
+[; ;access_ram2.c: 38: void main(void)
+[v _main `(v ~T0 @X0 1 ef ]
 "39
-[p x CP3 = OFF ]
-"42
-[p x CPB = OFF ]
+[; ;access_ram2.c: 39: {
+{
+[e :U _main ]
+[f ]
 "43
-[p x CPD = OFF ]
+[; ;access_ram2.c: 43:  unsigned char count = 0;
+[v _count `uc ~T0 @X0 1 a ]
+[e = _count -> -> 0 `i `uc ]
+"44
+[; ;access_ram2.c: 44:  unsigned long long_count=0;
+[v _long_count `ul ~T0 @X0 1 a ]
+[e = _long_count -> -> -> 0 `i `l `ul ]
 "46
-[p x WRT0 = OFF ]
-"47
-[p x WRT1 = OFF ]
-"48
-[p x WRT2 = OFF ]
-"49
-[p x WRT3 = OFF ]
+[; ;access_ram2.c: 46:     unsigned int countb=0;
+[v _countb `ui ~T0 @X0 1 a ]
+[e = _countb -> -> 0 `i `ui ]
+"51
+[; ;access_ram2.c: 51:  count = 2;
+[e = _count -> -> 2 `i `uc ]
 "52
-[p x WRTC = OFF ]
-"53
-[p x WRTB = OFF ]
-"54
-[p x WRTD = OFF ]
-"57
-[p x EBTR0 = OFF ]
+[; ;access_ram2.c: 52:  LATB = count;
+[e = _LATB _count ]
 "58
-[p x EBTR1 = OFF ]
+[; ;access_ram2.c: 58:  countb = 4;
+[e = _countb -> -> 4 `i `ui ]
 "59
-[p x EBTR2 = OFF ]
-"60
-[p x EBTR3 = OFF ]
-"63
-[p x EBTRB = OFF ]
+[; ;access_ram2.c: 59:  LATB = countb;
+[e = _LATB -> _countb `uc ]
+"71
+[; ;access_ram2.c: 71:     count = 260;
+[e = _count -> -> 260 `i `uc ]
+"72
+[; ;access_ram2.c: 72:  LATB = count;
+[e = _LATB _count ]
+"73
+[; ;access_ram2.c: 73:     LATB = count >> 8;
+[e = _LATB -> >> -> _count `i -> 8 `i `uc ]
+"78
+[; ;access_ram2.c: 78:     countb = 260;
+[e = _countb -> -> 260 `i `ui ]
+"79
+[; ;access_ram2.c: 79:  LATB = countb;
+[e = _LATB -> _countb `uc ]
+"80
+[; ;access_ram2.c: 80:     LATB = countb >> 8;
+[e = _LATB -> >> _countb -> 8 `i `uc ]
+"85
+[; ;access_ram2.c: 85:     long_count = 0x01020304;
+[e = _long_count -> -> 16909060 `l `ul ]
+"86
+[; ;access_ram2.c: 86:     LATB = long_count;
+[e = _LATB -> _long_count `uc ]
+"87
+[; ;access_ram2.c: 87:     LATB = long_count >> 8;
+[e = _LATB -> >> _long_count -> 8 `i `uc ]
+"88
+[; ;access_ram2.c: 88:     LATB = long_count >> 16;
+[e = _LATB -> >> _long_count -> 16 `i `uc ]
+"89
+[; ;access_ram2.c: 89:     LATB = long_count >> 24;
+[e = _LATB -> >> _long_count -> 24 `i `uc ]
+"90
+[; ;access_ram2.c: 90:  while(1);
+[e :U 283 ]
+[e :U 282 ]
+[e $U 283  ]
+[e :U 284 ]
+"93
+[; ;access_ram2.c: 93: }
+[e :UE 281 ]
+}
+"102
+[; ;access_ram2.c: 102: void Initial(void)
+[v _Initial `(v ~T0 @X0 1 ef ]
+"103
+[; ;access_ram2.c: 103: {
+{
+[e :U _Initial ]
+[f ]
+"104
+[; ;access_ram2.c: 104:     unsigned char i = 0;
+[v _i `uc ~T0 @X0 1 a ]
+[e = _i -> -> 0 `i `uc ]
+"105
+[; ;access_ram2.c: 105:  ADCON1 = 0x0f;
+[e = _ADCON1 -> -> 15 `i `uc ]
+"107
+[; ;access_ram2.c: 107:  TRISA = 0xff;
+[e = _TRISA -> -> 255 `i `uc ]
+"108
+[; ;access_ram2.c: 108:  TRISB = 0x00;
+[e = _TRISB -> -> 0 `i `uc ]
+"109
+[; ;access_ram2.c: 109:  LATB = 0x00;
+[e = _LATB -> -> 0 `i `uc ]
+"110
+[; ;access_ram2.c: 110:     for (i=0;i<3;i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 3 `i 286  ]
+[e $U 287  ]
+[e :U 286 ]
+"111
+[; ;access_ram2.c: 111:     {
+{
+"112
+[; ;access_ram2.c: 112:         LATB = i;
+[e = _LATB _i ]
+"113
+[; ;access_ram2.c: 113:     }
+}
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 3 `i 286  ]
+[e :U 287 ]
+}
+"114
+[; ;access_ram2.c: 114: }
+[e :UE 285 ]
+}
+"116
+[; ;access_ram2.c: 116: void delay_1s(void)
+[v _delay_1s `(v ~T0 @X0 1 ef ]
+"117
+[; ;access_ram2.c: 117: {
+{
+[e :U _delay_1s ]
+[f ]
+"118
+[; ;access_ram2.c: 118:     unsigned char i;
+[v _i `uc ~T0 @X0 1 a ]
+"119
+[; ;access_ram2.c: 119:     for (i=0;i<25;i++)
+{
+[e = _i -> -> 0 `i `uc ]
+[e $ < -> _i `i -> 25 `i 290  ]
+[e $U 291  ]
+[e :U 290 ]
+"120
+[; ;access_ram2.c: 120:             _delay((unsigned long)((40)*(19660800/4000.0)));
+[e ( __delay (1 -> * -> -> 40 `i `d / -> -> 19660800 `l `d .4000.0 `ul ]
+[e ++ _i -> -> 1 `i `uc ]
+[e $ < -> _i `i -> 25 `i 290  ]
+[e :U 291 ]
+}
+"122
+[; ;access_ram2.c: 122: }
+[e :UE 289 ]
+}
+"124
+[; ;access_ram2.c: 124: void test(void)
+[v _test `(v ~T0 @X0 1 ef ]
+"125
+[; ;access_ram2.c: 125: {
+{
+[e :U _test ]
+[f ]
+"126
+[; ;access_ram2.c: 126:     unsigned char j;
+[v _j `uc ~T0 @X0 1 a ]
+"127
+[; ;access_ram2.c: 127:     for (j=4;j<8;j++)
+{
+[e = _j -> -> 4 `i `uc ]
+[e $ < -> _j `i -> 8 `i 294  ]
+[e $U 295  ]
+[e :U 294 ]
+"128
+[; ;access_ram2.c: 128:         LATB = j;
+[e = _LATB _j ]
+[e ++ _j -> -> 1 `i `uc ]
+[e $ < -> _j `i -> 8 `i 294  ]
+[e :U 295 ]
+}
+"129
+[; ;access_ram2.c: 129: }
+[e :UE 293 ]
+}

@@ -30,7 +30,7 @@ void delay_1s(void);
   Global Variables
 ******************************************/
 
-
+unsigned char global_val[3] = {0x05,0x07,0x09};
 
 /*****************************************
 				Macros
@@ -50,7 +50,7 @@ void main(void)
 	LATB = 0x01;		//movlw 0x01
 						//movwf 0x81
 	
-	
+	LATB = global_val[1];
 	while(1)
 	{
 		//delay_1s();

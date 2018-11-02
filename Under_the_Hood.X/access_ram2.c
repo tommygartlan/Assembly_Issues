@@ -25,7 +25,7 @@ void Initial(void);
 void delay_1s(void);
 void test(void);
 //volatile unsigned char countc @ 0x301;
-unsigned char countc @ 0x301;
+unsigned int countc __at (0x201);
 /*****************************************
 				Macros
 ******************************************/
@@ -61,8 +61,8 @@ void main(void)
 	delay_1s();
 #endif
 
-	countc = 5;   //what happens here in assembly as oppose to assembly for countb = 4
-	LATB = countc;                  
+	//countc = 5;   //what happens here in assembly as oppose to assembly for countb = 4
+	//LATB = countc;                  
 #ifndef	ImDebugging								 
 	delay_1s();
 #endif	
